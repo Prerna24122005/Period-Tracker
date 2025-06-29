@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Period Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="box">
+        <h1>🌸 Period Tracker</h1>
+        <form method="POST">
+            <label>Name:</label>
+            <input type="text" name="name" required><br><br>
+
+            <label>Last Period Date:</label>
+            <input type="date" name="last_period" required><br><br>
+
+            <label>Cycle Length (21–35 days):</label>
+            <input type="number" name="cycle_length" required><br><br>
+
+            <label>Period Duration (days):</label>
+            <input type="number" name="period_length" required><br><br>
+
+            <button type="submit">Track</button>
+        </form>
+
+        {% if result %}
+            {% if result is string %}
+                <p style="color: red;">{{ result }}</p>
+            {% else %}
+                <div class="result">
+                    <h2>📅 Results</h2>
+                    <p><b>Next Period:</b> {{ result.next_start }} to {{ result.next_end }}</p>
+                    <p><b>Ovulation Day:</b> {{ result.ovulation }}</p>
+                    <p><b>Fertile Window:</b> {{ result.fertile }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
